@@ -4,10 +4,13 @@
  */
 package examenlab5p2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ADMIN
  */
-public class Civil {
+public class Civil extends Usuario{
     
+    private ArrayList<Tramite> tramite = new ArrayList();
 }
