@@ -6,7 +6,7 @@ package examenlab5p2;
 
 /**
  *
- * @author ADMIN
+ * Fila 3, 13 
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -16,6 +16,8 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +28,99 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        dialogo_Civiles = new javax.swing.JDialog();
+        panel_civil = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        texto_nombre = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Texto_contrasena = new javax.swing.JPasswordField();
+        Boton_ingresar = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        dialogo_Civiles.setMinimumSize(new java.awt.Dimension(600, 400));
+        dialogo_Civiles.setModal(true);
+
+        jButton1.setText("jButton1");
+
+        javax.swing.GroupLayout panel_civilLayout = new javax.swing.GroupLayout(panel_civil);
+        panel_civil.setLayout(panel_civilLayout);
+        panel_civilLayout.setHorizontalGroup(
+            panel_civilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_civilLayout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(jButton1)
+                .addContainerGap(271, Short.MAX_VALUE))
+        );
+        panel_civilLayout.setVerticalGroup(
+            panel_civilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_civilLayout.createSequentialGroup()
+                .addGap(111, 111, 111)
+                .addComponent(jButton1)
+                .addContainerGap(272, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout dialogo_CivilesLayout = new javax.swing.GroupLayout(dialogo_Civiles.getContentPane());
+        dialogo_Civiles.getContentPane().setLayout(dialogo_CivilesLayout);
+        dialogo_CivilesLayout.setHorizontalGroup(
+            dialogo_CivilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(dialogo_CivilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dialogo_CivilesLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panel_civil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        dialogo_CivilesLayout.setVerticalGroup(
+            dialogo_CivilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(dialogo_CivilesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(dialogo_CivilesLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panel_civil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 204));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Microsoft New Tai Lue", 1, 36)); // NOI18N
+        jLabel1.setText("LogIn");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 70, -1, -1));
+
+        jLabel2.setText("Ingrese su nombre:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 124, -1, -1));
+        getContentPane().add(texto_nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 158, 462, -1));
+
+        jLabel3.setText("Contraseña:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 202, -1, -1));
+        getContentPane().add(Texto_contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 236, 462, -1));
+
+        Boton_ingresar.setText("Ingresar");
+        Boton_ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Boton_ingresarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Boton_ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(257, 323, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Boton_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_ingresarMouseClicked
+        // TODO add your handling code here:
+        if (texto_nombre.getText().equals("Adonys Mercadal") && Texto_contrasena.getText().equals("dunai")){
+            texto_nombre.setText("");
+            Texto_contrasena.setText("");
+            this.setVisible(false);
+            dialogo_Civiles.setVisible(true);
+            dialogo_Civiles.setResizable(true);
+            this.pack();
+            dialogo_Civiles.setLocationRelativeTo(this);
+            panel_civil.setVisible(true);
+        }
+    }//GEN-LAST:event_Boton_ingresarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +158,14 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Boton_ingresar;
+    private javax.swing.JPasswordField Texto_contrasena;
+    private javax.swing.JDialog dialogo_Civiles;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel panel_civil;
+    private javax.swing.JTextField texto_nombre;
     // End of variables declaration//GEN-END:variables
 }

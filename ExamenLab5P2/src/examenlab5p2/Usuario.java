@@ -5,6 +5,7 @@
 package examenlab5p2;
 
 import java.util.Date;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -21,12 +22,11 @@ public class Usuario {
     protected String sexo;
     protected String departamento;
     protected String numeroIdentidad;
-    protected JFrame mensaje;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String contrasena, Date fechaNacimineto, String sexo, String departamento, String numeroIdentidad, JFrame mensaje) {
+    public Usuario(String nombre, String apellido, String contrasena, Date fechaNacimineto, String sexo, String departamento, String numeroIdentidad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasena = contrasena;
@@ -34,7 +34,6 @@ public class Usuario {
         this.sexo = sexo;
         this.departamento = departamento;
         this.numeroIdentidad = numeroIdentidad;
-        this.mensaje = mensaje;
     }
 
     public String getNombre() {
@@ -86,7 +85,7 @@ public class Usuario {
         if (departamento.equalsIgnoreCase("Francisco Morazan") || departamento.equalsIgnoreCase("Cortes") || departamento.equalsIgnoreCase("Comayagua")) {
             this.departamento = departamento;
         } else {
-            JOptionPane.showMessageDialog(mensaje, "Ese departamento no esta disponible.");
+            JOptionPane.showMessageDialog(null, "Ese departamento no esta disponible.");
         }
 
     }
@@ -96,22 +95,45 @@ public class Usuario {
     }
 
     public void setNumeroIdentidad(String numeroIdentidad) {
+        Random r = new Random();
+
         if (departamento.equalsIgnoreCase("Francisco Morazan")) {
             numeroIdentidad += "01";
+            int numFM = r.nextInt(28) + 1;
+            if (numFM < 10) {
+                numeroIdentidad += "0" + numFM;
+            } else {
+                numeroIdentidad += numFM;
+            }
+            numeroIdentidad += fechaNacimineto.getYear();
+
         } else if (departamento.equalsIgnoreCase("Cortes")) {
             numeroIdentidad += "02";
+            int numC = r.nextInt(12) + 1;
+            if (numC < 10) {
+                numeroIdentidad += "0" + numC;
+            } else {
+                numeroIdentidad += numC;
+            }
+            numeroIdentidad += fechaNacimineto.getYear();
+
         } else if (departamento.equalsIgnoreCase("Comayagua")) {
             numeroIdentidad += "03";
+            int numCo = r.nextInt(21) + 1;
+            if (numCo < 10) {
+                numeroIdentidad += "0" + numCo;
+            } else {
+                numeroIdentidad += numCo;
+            }
+            numeroIdentidad += fechaNacimineto.getYear();
         }
+
+        int numAleatorio = 0;
+        for (int i = 0; i < 5; i++) {
+            numAleatorio = numAleatorio * 10 + r.nextInt(10);
+        }
+        numeroIdentidad += numAleatorio;
         this.numeroIdentidad = numeroIdentidad;
-    }
-
-    public JFrame getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(JFrame mensaje) {
-        this.mensaje = mensaje;
     }
 
 }
