@@ -32,8 +32,8 @@ public class Usuario {
         this.contrasena = contrasena;
         this.fechaNacimineto = fechaNacimineto;
         this.sexo = sexo;
-        this.departamento = departamento;
-        this.numeroIdentidad = numeroIdentidad;
+        setDepartamento(departamento);
+        setNumeroIdentidad(numeroIdentidad);
     }
 
     public String getNombre() {
@@ -128,11 +128,12 @@ public class Usuario {
             numeroIdentidad += fechaNacimineto.getYear();
         }
 
-        int numAleatorio = 0;
+        int numAleatorio = r.nextInt(9) + 1;
+        String cadena = "";
         for (int i = 0; i < 5; i++) {
-            numAleatorio = numAleatorio * 10 + r.nextInt(10);
+            cadena += numAleatorio;
         }
-        numeroIdentidad += numAleatorio;
+        numeroIdentidad += cadena;
         this.numeroIdentidad = numeroIdentidad;
     }
 
