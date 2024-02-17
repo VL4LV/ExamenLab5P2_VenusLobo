@@ -640,20 +640,25 @@ public class Principal extends javax.swing.JFrame {
             }
         }
 
-        Civil civilIniciado = civil1;
-
-        //Informacion del civil 1
-        Object[] filaInfoPersonal = {
-            civilIniciado.getNombre() + " " + civilIniciado.getApellido(),
-            civilIniciado.getNumeroIdentidad(),
-            civilIniciado.getFechaNacimineto(),
-            civilIniciado.getSexo(),
-            civilIniciado.getDepartamento()
+        // info del civil 1
+        Object[] filaInfoCivil1 = {
+            civil1.getNombre() + " " + civil1.getApellido(),
+            civil1.getNumeroIdentidad(),
+            civil1.getFechaNacimineto(),
+            civil1.getSexo(),
+            civil1.getDepartamento()
         };
-        ((DefaultTableModel) jTable4.getModel()).addRow(filaInfoPersonal);
-        
-        
-        
+        ((DefaultTableModel) jTable4.getModel()).addRow(filaInfoCivil1);
+
+        // info del civil 2
+        Object[] filaInfoCivil2 = {
+            civil2.getNombre() + " " + civil2.getApellido(),
+            civil2.getNumeroIdentidad(),
+            civil2.getFechaNacimineto(),
+            civil2.getSexo(),
+            civil2.getDepartamento()
+        };
+        ((DefaultTableModel) jTable4.getModel()).addRow(filaInfoCivil2);
 
         String nombreIngresado = texto_nombre.getText();
         String contrasenaIngresada = new String(Texto_contrasena.getPassword());
