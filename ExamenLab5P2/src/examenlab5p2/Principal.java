@@ -57,6 +57,7 @@ public class Principal extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
+        numeroIdentidades = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         dialogo_Empleados = new javax.swing.JDialog();
         panel_empleado = new javax.swing.JPanel();
@@ -179,12 +180,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Sexo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino", " " }));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel12.setText("Departamento");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Francisco Morazan", "Cortes", "Comayagua." }));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel13.setText("Fecha de nacimiento");
@@ -198,31 +199,34 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(75, 75, 75)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 56, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, 183, Short.MAX_VALUE)
                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(75, 75, 75)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
                             .addComponent(jCalendar1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55))))
+                        .addGap(55, 55, 55))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(numeroIdentidades, javax.swing.GroupLayout.Alignment.LEADING, 0, 183, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(75, 75, 75)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(14, 14, 14)
+                .addComponent(numeroIdentidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9))
@@ -604,6 +608,53 @@ public class Principal extends javax.swing.JFrame {
 
         tablaEmpleados.setModel(modeloTabla);
 
+        DefaultTableModel modeloTablaTramites = (DefaultTableModel) jTable2.getModel();
+        modeloTablaTramites.setRowCount(0);
+
+        for (Usuario u : usu) {
+            if (u instanceof Civil) {
+                Civil civil = (Civil) u;
+
+                ArrayList<Tramite> tramites = civil.getTramite();
+
+                for (Tramite tramite : tramites) {
+                    Object[] fila = {
+                        civil.getNombre() + " " + civil.getApellido(),
+                        tramite.getNombreTramite(),
+                        tramite.getDescripcion(),
+                        tramite.getFechaSolicitud(),
+                        tramite.getIdSolicitud()
+                    };
+                    modeloTablaTramites.addRow(fila);
+                }
+            }
+        }
+
+        jTable2.setModel(modeloTablaTramites);
+
+        //Agregar las identidades a la box
+        for (Usuario u : usu) {
+            if (u instanceof Civil) {
+                Civil civil = (Civil) u;
+                numeroIdentidades.addItem(civil.getNumeroIdentidad());
+            }
+        }
+
+        Civil civilIniciado = civil1;
+
+        //Informacion del civil 1
+        Object[] filaInfoPersonal = {
+            civilIniciado.getNombre() + " " + civilIniciado.getApellido(),
+            civilIniciado.getNumeroIdentidad(),
+            civilIniciado.getFechaNacimineto(),
+            civilIniciado.getSexo(),
+            civilIniciado.getDepartamento()
+        };
+        ((DefaultTableModel) jTable4.getModel()).addRow(filaInfoPersonal);
+        
+        
+        
+
         String nombreIngresado = texto_nombre.getText();
         String contrasenaIngresada = new String(Texto_contrasena.getPassword());
 
@@ -792,6 +843,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JComboBox<String> numeroIdentidades;
     private javax.swing.JPanel panel_civil;
     private javax.swing.JPanel panel_empleado;
     private javax.swing.JTable tablaEmpleados;
