@@ -45,8 +45,8 @@
                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="nombreSesionCivil" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="272" max="-2" attributes="0"/>
+                      <Component id="bienvenida_civil" min="-2" pref="114" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
                       <Component id="boton_salirCivil" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -64,7 +64,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="boton_salirCivil" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombreSesionCivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bienvenida_civil" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jTabbedPane1" min="-2" pref="409" max="-2" attributes="0"/>
@@ -79,8 +79,14 @@
                 <Property name="text" type="java.lang.String" value="Cerrar sesion"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="boton_salirCivilMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_salirCivilActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="bienvenida_civil">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel18"/>
+              </Properties>
             </Component>
             <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
 
@@ -418,8 +424,6 @@
                 <Property name="text" type="java.lang.String" value="Bienvenido:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="nombreSesionCivil">
-            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
@@ -482,7 +486,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="nombreInicioSesion" min="-2" pref="162" max="-2" attributes="0"/>
+                              <Component id="bienvenidaEmpleado" min="-2" pref="147" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -499,7 +503,7 @@
                           <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="nombreInicioSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="bienvenidaEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
@@ -519,6 +523,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cerrar sesion"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
 
@@ -769,7 +776,10 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="nombreInicioSesion">
+            <Component class="javax.swing.JLabel" name="bienvenidaEmpleado">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="jLabel18"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

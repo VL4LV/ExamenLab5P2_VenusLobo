@@ -4,6 +4,7 @@
  */
 package examenlab5p2;
 
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
         dialogo_Civiles = new javax.swing.JDialog();
         panel_civil = new javax.swing.JPanel();
         boton_salirCivil = new javax.swing.JButton();
+        bienvenida_civil = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,7 +56,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jLabel8 = new javax.swing.JLabel();
-        nombreSesionCivil = new javax.swing.JLabel();
         dialogo_Empleados = new javax.swing.JDialog();
         panel_empleado = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -74,7 +75,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         texto_descripcion = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
-        nombreInicioSesion = new javax.swing.JLabel();
+        bienvenidaEmpleado = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -89,11 +90,18 @@ public class Principal extends javax.swing.JFrame {
         panel_civil.setPreferredSize(new java.awt.Dimension(593, 544));
 
         boton_salirCivil.setText("Cerrar sesion");
+        boton_salirCivil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boton_salirCivilMouseClicked(evt);
+            }
+        });
         boton_salirCivil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_salirCivilActionPerformed(evt);
             }
         });
+
+        bienvenida_civil.setText("jLabel18");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -252,8 +260,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreSesionCivil)
-                .addGap(272, 272, 272)
+                .addComponent(bienvenida_civil, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158)
                 .addComponent(boton_salirCivil)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_civilLayout.createSequentialGroup()
@@ -268,7 +276,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panel_civilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boton_salirCivil)
                     .addComponent(jLabel8)
-                    .addComponent(nombreSesionCivil))
+                    .addComponent(bienvenida_civil))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(72, Short.MAX_VALUE))
@@ -301,6 +309,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel14.setText("Bienvenido");
 
         jButton2.setText("Cerrar sesion");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -414,6 +427,8 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Gestion de tramites", jPanel4);
 
+        bienvenidaEmpleado.setText("jLabel18");
+
         javax.swing.GroupLayout panel_empleadoLayout = new javax.swing.GroupLayout(panel_empleado);
         panel_empleado.setLayout(panel_empleadoLayout);
         panel_empleadoLayout.setHorizontalGroup(
@@ -425,7 +440,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(panel_empleadoLayout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nombreInicioSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bienvenidaEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addGap(45, 45, 45))
@@ -438,7 +453,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addGroup(panel_empleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
-                        .addComponent(nombreInicioSesion)))
+                        .addComponent(bienvenidaEmpleado)))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(96, Short.MAX_VALUE))
@@ -545,36 +560,104 @@ public class Principal extends javax.swing.JFrame {
 
     private void Boton_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_ingresarMouseClicked
         // TODO add your handling code here:
-        if (texto_nombre.getText().equals("Adonys Mercadal") && new String (Texto_contrasena.getPassword()).equals("dunai")) {
+        String nombreIngresado = texto_nombre.getText();
+        String contrasenaIngresada = new String(Texto_contrasena.getPassword());
+
+        // Validar los usuarios Civil
+        if (nombreIngresado.equals(civil1.getNombre() + " " + civil1.getApellido()) && contrasenaIngresada.equals(civil1.getContrasena())) {
+            //Adonys Mercadal
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
+            bienvenida_civil.setText("Adonys Mercadal");
             this.setVisible(false);
             dialogo_Civiles.pack();
             dialogo_Civiles.setLocationRelativeTo(this);
             dialogo_Civiles.setResizable(true);
             dialogo_Civiles.setVisible(true);
-            nombreSesionCivil.setText("Adonys Mercadal");
+            
 
-        } else if (texto_nombre.getText().equals("Angel Munguia") && new String(Texto_contrasena.getPassword()).equals("VLLV")) {
+        } else if (nombreIngresado.equals(civil2.getNombre() + " " + civil2.getApellido()) && contrasenaIngresada.equals(civil2.getContrasena())) {
+            //Venus Lobo
+            texto_nombre.setText("");
+            Texto_contrasena.setText("");
+            
+            bienvenida_civil.setText("Venus Lobo");
+            this.setVisible(false);
+            dialogo_Civiles.pack();
+            dialogo_Civiles.setLocationRelativeTo(this);
+            dialogo_Civiles.setResizable(true);
+            dialogo_Civiles.setVisible(true);
+            
+            
+        } // Validar los usuarios Empleado
+        else if (nombreIngresado.equals(empleado1.getNombre() + " " + empleado1.getApellido()) && contrasenaIngresada.equals(empleado1.getContrasena())) {
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
+            bienvenidaEmpleado.setText("Angel Munguia");
             this.setVisible(false);
             dialogo_Empleados.pack();
             dialogo_Empleados.setLocationRelativeTo(this);
             dialogo_Empleados.setResizable(true);
             dialogo_Empleados.setVisible(true);
-            nombreInicioSesion.setText("Angel Munguia");
+            
+            
+        } else if (nombreIngresado.equals(empleado2.getNombre() + " " + empleado2.getApellido()) && contrasenaIngresada.equals(empleado2.getContrasena())) {
+            texto_nombre.setText("");
+            Texto_contrasena.setText("");
 
+            bienvenidaEmpleado.setText("Irene Cortez");
+            this.setVisible(false);
+            dialogo_Empleados.pack();
+            dialogo_Empleados.setLocationRelativeTo(this);
+            dialogo_Empleados.setResizable(true);
+            dialogo_Empleados.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Ese usuario no existe.");
+            JOptionPane.showMessageDialog(this, "Usuario no existente.");
         }
+
+//        if (texto_nombre.getText().equals("Adonys Mercadal") && new String(Texto_contrasena.getPassword()).equals("dunai")) {
+//            texto_nombre.setText("");
+//            Texto_contrasena.setText("");
+//
+//            this.setVisible(false);
+//            dialogo_Civiles.pack();
+//            dialogo_Civiles.setLocationRelativeTo(this);
+//            dialogo_Civiles.setResizable(true);
+//            dialogo_Civiles.setVisible(true);
+//            nombreSesionCivil.setText("Adonys Mercadal");
+//
+//        } else if (texto_nombre.getText().equals("Angel Munguia") && new String(Texto_contrasena.getPassword()).equals("VLLV")) {
+//            texto_nombre.setText("");
+//            Texto_contrasena.setText("");
+//
+//            this.setVisible(false);
+//            dialogo_Empleados.pack();
+//            dialogo_Empleados.setLocationRelativeTo(this);
+//            dialogo_Empleados.setResizable(true);
+//            dialogo_Empleados.setVisible(true);
+//            nombreInicioSesion.setText("Angel Munguia");
+//
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Ese usuario no existe.");
+//        }
     }//GEN-LAST:event_Boton_ingresarMouseClicked
 
     private void boton_salirCivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_salirCivilActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_salirCivilActionPerformed
+
+    private void boton_salirCivilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_salirCivilMouseClicked
+        // TODO add your handling code here:
+
+        System.exit(0);
+    }//GEN-LAST:event_boton_salirCivilMouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -611,9 +694,17 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
+    Civil civil1 = new Civil("Adonys", "Mercadal", "dunai", new Date(1990, 5, 15), "Masculino", "Francisco Morazan", "0");
+    Civil civil2 = new Civil("Venus", "Lobo", "1234", new Date(1985, 8, 20), "Femenino", "Cortes", "0");
+
+    Empleado empleado1 = new Empleado("Ingenieria en sistemas", "Manager de Tigo", 5, "Angel", "Mungia", "VLLV", new Date(1988, 2, 10), "Masculino", "Francisco Morazan", "0");
+    Empleado empleado2 = new Empleado("Diseño de modas", "Gerente de Charlie", 10, "Irene", "Cortez", "123", new Date(1976, 11, 25), "Femenino", "Comayagua", "0");
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Boton_ingresar;
     private javax.swing.JPasswordField Texto_contrasena;
+    private javax.swing.JLabel bienvenidaEmpleado;
+    private javax.swing.JLabel bienvenida_civil;
     private javax.swing.JButton boton_salirCivil;
     private javax.swing.JDialog dialogo_Civiles;
     private javax.swing.JDialog dialogo_Empleados;
@@ -658,8 +749,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JLabel nombreInicioSesion;
-    private javax.swing.JLabel nombreSesionCivil;
     private javax.swing.JPanel panel_civil;
     private javax.swing.JPanel panel_empleado;
     private javax.swing.JTextArea texto_descripcion;
