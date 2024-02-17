@@ -39,7 +39,7 @@ public class Principal extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaEmpleados = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -105,7 +105,7 @@ public class Principal extends javax.swing.JFrame {
 
         bienvenida_civil.setText("jLabel18");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -116,7 +116,7 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre completo", "No. Identidad", "Fecha de nacimiento"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaEmpleados);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -581,23 +581,28 @@ public class Principal extends javax.swing.JFrame {
         usu.add(empleado1);
         usu.add(empleado2);
 
-        //Modelo de la tabla
-        DefaultTableModel modeloTabla = (DefaultTableModel) jTable4.getModel();
+        ArrayList<Civil> civiles = new ArrayList();
+        for (Usuario u : usu) {
+            if (u instanceof Civil) {
+                Civil civil = (Civil) u;
+                civiles.add(civil);
+            }
+        }
 
-        //Limpiar la tabla
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaEmpleados.getModel();
+
         modeloTabla.setRowCount(0);
 
-        for (Usuario u : usu) {
+        for (Civil civil : civiles) {
             Object[] fila = {
-                u.getNombre() + " " + u.getApellido(),
-                u.getNumeroIdentidad(),
-                u.getFechaNacimineto()
+                civil.getNombre() + " " + civil.getApellido(),
+                civil.getNumeroIdentidad(),
+                civil.getFechaNacimineto()
             };
             modeloTabla.addRow(fila);
         }
 
-        jTable4.setModel(modeloTabla);
-        jTable1.setModel(modeloTabla);
+        tablaEmpleados.setModel(modeloTabla);
 
         String nombreIngresado = texto_nombre.getText();
         String contrasenaIngresada = new String(Texto_contrasena.getPassword());
@@ -609,7 +614,7 @@ public class Principal extends javax.swing.JFrame {
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
-            bienvenida_civil.setText("Adonys Mercadal");
+            bienvenidaEmpleado.setText("Adonys Mercadal");
             this.setVisible(false);
             dialogo_Empleados.pack();
             dialogo_Empleados.setLocationRelativeTo(this);
@@ -622,7 +627,7 @@ public class Principal extends javax.swing.JFrame {
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
-            bienvenida_civil.setText("Venus Lobo");
+            bienvenidaEmpleado.setText("Venus Lobo");
             this.setVisible(false);
             dialogo_Empleados.pack();
             dialogo_Empleados.setLocationRelativeTo(this);
@@ -636,7 +641,7 @@ public class Principal extends javax.swing.JFrame {
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
-            bienvenidaEmpleado.setText("Angel Munguia");
+            bienvenida_civil.setText("Angel Munguia");
             this.setVisible(false);
             dialogo_Civiles.pack();
             dialogo_Civiles.setLocationRelativeTo(this);
@@ -649,7 +654,7 @@ public class Principal extends javax.swing.JFrame {
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
-            bienvenidaEmpleado.setText("Irene Cortez");
+            bienvenida_civil.setText("Irene Cortez");
             this.setVisible(false);
             dialogo_Civiles.pack();
             dialogo_Civiles.setLocationRelativeTo(this);
@@ -781,7 +786,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
@@ -790,6 +794,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panel_civil;
     private javax.swing.JPanel panel_empleado;
+    private javax.swing.JTable tablaEmpleados;
     private javax.swing.JTextArea texto_descripcion;
     private javax.swing.JTextField texto_nombre;
     private javax.swing.JTextField texto_nombreGestion;

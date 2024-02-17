@@ -33,6 +33,7 @@ public class Usuario {
         this.fechaNacimineto = fechaNacimineto;
         this.sexo = sexo;
         setDepartamento(departamento);
+        setNumeroIdentidad();
     }
 
     public String getNombre() {
@@ -93,9 +94,9 @@ public class Usuario {
         return numeroIdentidad;
     }
 
-    public void setNumeroIdentidad(String numeroIdentidad) {
+    public void setNumeroIdentidad() {
         Random r = new Random();
-
+        String numeroIdentidad = "";
         if (departamento.equalsIgnoreCase("Francisco Morazan")) {
             numeroIdentidad += "01";
             int numFM = r.nextInt(28) + 1;
@@ -139,8 +140,6 @@ public class Usuario {
     @Override
     public String toString() {
         return "numeroIdentidad=" + numeroIdentidad + '}';
-    }
-    
-    
 
+    }
 }
