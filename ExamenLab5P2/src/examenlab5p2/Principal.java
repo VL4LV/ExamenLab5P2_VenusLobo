@@ -67,7 +67,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tablaPersonalEmpleado = new javax.swing.JTable();
+        jTable4 = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -252,7 +252,7 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Modificacion civiles", jPanel3);
 
-        jLabel8.setText("Bienvenido:");
+        jLabel8.setText(" Bienvenido empleado:");
 
         javax.swing.GroupLayout panel_civilLayout = new javax.swing.GroupLayout(panel_civil);
         panel_civil.setLayout(panel_civilLayout);
@@ -265,11 +265,11 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(bienvenida_civil, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158)
                 .addComponent(boton_salirCivil)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_civilLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_civilLayout.setVerticalGroup(
             panel_civilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,7 +308,7 @@ public class Principal extends javax.swing.JFrame {
         panel_empleado.setMinimumSize(new java.awt.Dimension(0, 0));
         panel_empleado.setPreferredSize(new java.awt.Dimension(593, 544));
 
-        jLabel14.setText("Bienvenido");
+        jLabel14.setText("Bienvenido civil:");
 
         jButton2.setText("Cerrar sesion");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -330,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        tablaPersonalEmpleado.setModel(new javax.swing.table.DefaultTableModel(
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -341,11 +341,11 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre completo", "No. Identidad", "Fecha de nacimiento"
             }
         ));
-        jScrollPane4.setViewportView(tablaPersonalEmpleado);
-        if (tablaPersonalEmpleado.getColumnModel().getColumnCount() > 0) {
-            tablaPersonalEmpleado.getColumnModel().getColumn(0).setHeaderValue("Nombre completo");
-            tablaPersonalEmpleado.getColumnModel().getColumn(1).setHeaderValue("No. Identidad");
-            tablaPersonalEmpleado.getColumnModel().getColumn(2).setHeaderValue("Fecha de nacimiento");
+        jScrollPane4.setViewportView(jTable4);
+        if (jTable4.getColumnModel().getColumnCount() > 0) {
+            jTable4.getColumnModel().getColumn(0).setHeaderValue("Nombre completo");
+            jTable4.getColumnModel().getColumn(1).setHeaderValue("No. Identidad");
+            jTable4.getColumnModel().getColumn(2).setHeaderValue("Fecha de nacimiento");
         }
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -578,11 +578,11 @@ public class Principal extends javax.swing.JFrame {
 
         usu.add(civil1);
         usu.add(civil2);
-        usu.add(civil1);
-        usu.add(civil2);
+        usu.add(empleado1);
+        usu.add(empleado2);
 
         //Modelo de la tabla
-        DefaultTableModel modeloTabla = (DefaultTableModel) tablaPersonalEmpleado.getModel();
+        DefaultTableModel modeloTabla = (DefaultTableModel) jTable4.getModel();
 
         //Limpiar la tabla
         modeloTabla.setRowCount(0);
@@ -596,7 +596,8 @@ public class Principal extends javax.swing.JFrame {
             modeloTabla.addRow(fila);
         }
 
-        tablaPersonalEmpleado.setModel(modeloTabla);
+        jTable4.setModel(modeloTabla);
+        jTable1.setModel(modeloTabla);
 
         String nombreIngresado = texto_nombre.getText();
         String contrasenaIngresada = new String(Texto_contrasena.getPassword());
@@ -604,52 +605,57 @@ public class Principal extends javax.swing.JFrame {
         // Validar los usuarios Civil
         if (nombreIngresado.equals(civil1.getNombre() + " " + civil1.getApellido()) && contrasenaIngresada.equals(civil1.getContrasena())) {
             //Adonys Mercadal
+            //Civil
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
             bienvenida_civil.setText("Adonys Mercadal");
             this.setVisible(false);
-            dialogo_Civiles.pack();
-            dialogo_Civiles.setLocationRelativeTo(this);
-            dialogo_Civiles.setResizable(true);
-            dialogo_Civiles.setVisible(true);
+            dialogo_Empleados.pack();
+            dialogo_Empleados.setLocationRelativeTo(this);
+            dialogo_Empleados.setResizable(true);
+            dialogo_Empleados.setVisible(true);
 
         } else if (nombreIngresado.equals(civil2.getNombre() + " " + civil2.getApellido()) && contrasenaIngresada.equals(civil2.getContrasena())) {
             //Venus Lobo
+            //Civil
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
             bienvenida_civil.setText("Venus Lobo");
             this.setVisible(false);
-            dialogo_Civiles.pack();
-            dialogo_Civiles.setLocationRelativeTo(this);
-            dialogo_Civiles.setResizable(true);
-            dialogo_Civiles.setVisible(true);
+            dialogo_Empleados.pack();
+            dialogo_Empleados.setLocationRelativeTo(this);
+            dialogo_Empleados.setResizable(true);
+            dialogo_Empleados.setVisible(true);
 
         } // Validar los usuarios Empleado
         else if (nombreIngresado.equals(empleado1.getNombre() + " " + empleado1.getApellido()) && contrasenaIngresada.equals(empleado1.getContrasena())) {
             //Angel Munguia
+            //Empleado
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
             bienvenidaEmpleado.setText("Angel Munguia");
             this.setVisible(false);
-            dialogo_Empleados.pack();
-            dialogo_Empleados.setLocationRelativeTo(this);
-            dialogo_Empleados.setResizable(true);
-            dialogo_Empleados.setVisible(true);
+            dialogo_Civiles.pack();
+            dialogo_Civiles.setLocationRelativeTo(this);
+            dialogo_Civiles.setResizable(true);
+            dialogo_Civiles.setVisible(true);
 
         } else if (nombreIngresado.equals(empleado2.getNombre() + " " + empleado2.getApellido()) && contrasenaIngresada.equals(empleado2.getContrasena())) {
             //Irene Cortez
+            //Empleado
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
             bienvenidaEmpleado.setText("Irene Cortez");
             this.setVisible(false);
-            dialogo_Empleados.pack();
-            dialogo_Empleados.setLocationRelativeTo(this);
-            dialogo_Empleados.setResizable(true);
-            dialogo_Empleados.setVisible(true);
+            dialogo_Civiles.pack();
+            dialogo_Civiles.setLocationRelativeTo(this);
+            dialogo_Civiles.setResizable(true);
+            dialogo_Civiles.setVisible(true);
+
         } else {
             JOptionPane.showMessageDialog(this, "Usuario no existente.");
         }
@@ -778,12 +784,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panel_civil;
     private javax.swing.JPanel panel_empleado;
-    private javax.swing.JTable tablaPersonalEmpleado;
     private javax.swing.JTextArea texto_descripcion;
     private javax.swing.JTextField texto_nombre;
     private javax.swing.JTextField texto_nombreGestion;
