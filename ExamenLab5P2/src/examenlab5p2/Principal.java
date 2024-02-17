@@ -4,8 +4,10 @@
  */
 package examenlab5p2;
 
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -65,7 +67,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        tablaPersonalEmpleado = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
@@ -328,7 +330,7 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        tablaPersonalEmpleado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -339,7 +341,12 @@ public class Principal extends javax.swing.JFrame {
                 "Nombre completo", "No. Identidad", "Fecha de nacimiento"
             }
         ));
-        jScrollPane4.setViewportView(jTable4);
+        jScrollPane4.setViewportView(tablaPersonalEmpleado);
+        if (tablaPersonalEmpleado.getColumnModel().getColumnCount() > 0) {
+            tablaPersonalEmpleado.getColumnModel().getColumn(0).setHeaderValue("Nombre completo");
+            tablaPersonalEmpleado.getColumnModel().getColumn(1).setHeaderValue("No. Identidad");
+            tablaPersonalEmpleado.getColumnModel().getColumn(2).setHeaderValue("Fecha de nacimiento");
+        }
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel15.setText("Informacion general");
@@ -558,8 +565,39 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void Boton_ingresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_ingresarMouseClicked
         // TODO add your handling code here:
+        ArrayList<Usuario> usu = new ArrayList<>();
+
+        Civil civil1 = new Civil("Adonys", "Mercadal", "dunai", new Date(1990, 5, 15), "Masculino", "Francisco Morazan");
+        Civil civil2 = new Civil("Venus", "Lobo", "1234", new Date(1985, 8, 20), "Femenino", "Cortes");
+
+        Empleado empleado1 = new Empleado("Ingenieria en sistemas", "Manager de Tigo", 5, "Angel", "Munguia", "VLLV", new Date(1988, 2, 10), "Masculino", "Francisco Morazan");
+        Empleado empleado2 = new Empleado("Diseño de modas", "Gerente de Charlie", 10, "Irene", "Cortez", "123", new Date(1976, 11, 25), "Femenino", "Comayagua");
+
+        usu.add(civil1);
+        usu.add(civil2);
+        usu.add(civil1);
+        usu.add(civil2);
+
+        //Modelo de la tabla
+        DefaultTableModel modeloTabla = (DefaultTableModel) tablaPersonalEmpleado.getModel();
+
+        //Limpiar la tabla
+        modeloTabla.setRowCount(0);
+
+        for (Usuario u : usu) {
+            Object[] fila = {
+                u.getNombre() + " " + u.getApellido(),
+                u.getNumeroIdentidad(),
+                u.getFechaNacimineto()
+            };
+            modeloTabla.addRow(fila);
+        }
+
+        tablaPersonalEmpleado.setModel(modeloTabla);
+
         String nombreIngresado = texto_nombre.getText();
         String contrasenaIngresada = new String(Texto_contrasena.getPassword());
 
@@ -575,23 +613,22 @@ public class Principal extends javax.swing.JFrame {
             dialogo_Civiles.setLocationRelativeTo(this);
             dialogo_Civiles.setResizable(true);
             dialogo_Civiles.setVisible(true);
-            
 
         } else if (nombreIngresado.equals(civil2.getNombre() + " " + civil2.getApellido()) && contrasenaIngresada.equals(civil2.getContrasena())) {
             //Venus Lobo
             texto_nombre.setText("");
             Texto_contrasena.setText("");
-            
+
             bienvenida_civil.setText("Venus Lobo");
             this.setVisible(false);
             dialogo_Civiles.pack();
             dialogo_Civiles.setLocationRelativeTo(this);
             dialogo_Civiles.setResizable(true);
             dialogo_Civiles.setVisible(true);
-            
-            
+
         } // Validar los usuarios Empleado
         else if (nombreIngresado.equals(empleado1.getNombre() + " " + empleado1.getApellido()) && contrasenaIngresada.equals(empleado1.getContrasena())) {
+            //Angel Munguia
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
@@ -601,9 +638,9 @@ public class Principal extends javax.swing.JFrame {
             dialogo_Empleados.setLocationRelativeTo(this);
             dialogo_Empleados.setResizable(true);
             dialogo_Empleados.setVisible(true);
-            
-            
+
         } else if (nombreIngresado.equals(empleado2.getNombre() + " " + empleado2.getApellido()) && contrasenaIngresada.equals(empleado2.getContrasena())) {
+            //Irene Cortez
             texto_nombre.setText("");
             Texto_contrasena.setText("");
 
@@ -694,11 +731,7 @@ public class Principal extends javax.swing.JFrame {
         });
     }
 
-    Civil civil1 = new Civil("Adonys", "Mercadal", "dunai", new Date(1990, 5, 15), "Masculino", "Francisco Morazan", "0");
-    Civil civil2 = new Civil("Venus", "Lobo", "1234", new Date(1985, 8, 20), "Femenino", "Cortes", "0");
-
-    Empleado empleado1 = new Empleado("Ingenieria en sistemas", "Manager de Tigo", 5, "Angel", "Mungia", "VLLV", new Date(1988, 2, 10), "Masculino", "Francisco Morazan", "0");
-    Empleado empleado2 = new Empleado("Diseño de modas", "Gerente de Charlie", 10, "Irene", "Cortez", "123", new Date(1976, 11, 25), "Femenino", "Comayagua", "0");
+    //Agregar al arrayList
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Boton_ingresar;
@@ -745,12 +778,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JPanel panel_civil;
     private javax.swing.JPanel panel_empleado;
+    private javax.swing.JTable tablaPersonalEmpleado;
     private javax.swing.JTextArea texto_descripcion;
     private javax.swing.JTextField texto_nombre;
     private javax.swing.JTextField texto_nombreGestion;

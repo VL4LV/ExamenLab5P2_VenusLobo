@@ -26,14 +26,13 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String contrasena, Date fechaNacimineto, String sexo, String departamento, String numeroIdentidad) {
+    public Usuario(String nombre, String apellido, String contrasena, Date fechaNacimineto, String sexo, String departamento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.contrasena = contrasena;
         this.fechaNacimineto = fechaNacimineto;
         this.sexo = sexo;
         setDepartamento(departamento);
-        setNumeroIdentidad(numeroIdentidad);
     }
 
     public String getNombre() {
@@ -136,5 +135,12 @@ public class Usuario {
         numeroIdentidad += cadena;
         this.numeroIdentidad = numeroIdentidad;
     }
+
+    @Override
+    public String toString() {
+        return "numeroIdentidad=" + numeroIdentidad + '}';
+    }
+    
+    
 
 }
